@@ -1,0 +1,38 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "output": "stdout",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "http",
+      "tag": "http-in",
+      "listen": "0.0.0.0",
+      "listen_port": 8080
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "http",
+      "tag": "http-out",
+      "server": "mlyjq.cloudflareaccess.com",
+      "server_port": 443,
+      "tls": {
+        "enabled": true,
+        "server_name": "firsty.app"
+      }
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": [
+          "http-in"
+        ],
+        "outbound": "http-out"
+      }
+    ]
+  }
+}
