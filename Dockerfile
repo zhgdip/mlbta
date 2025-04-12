@@ -12,9 +12,12 @@ RUN curl -L -o sing-box.tar.gz https://github.com/SagerNet/sing-box/releases/lat
     chmod +x /usr/bin/sing-box && \
     rm -rf sing-box*
 
-COPY 配置.json /etc/sb/config.json
-COPY 入口点.sh /entrypoint.sh
+# 拷贝配置文件和入口脚本
+COPY config.json /etc/sb/config.json
+COPY entrypoint.sh /entrypoint.sh
 
+# 添加执行权限
 RUN chmod +x /entrypoint.sh
 
+# 设置容器入口
 ENTRYPOINT ["/entrypoint.sh"]
